@@ -16,10 +16,10 @@ jobs:
     name: phpcs
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: WPCS check
-      uses: 10up/wpcs-action@feature/phpcs-only-changed-files
-      with:
-        standard: 'WordPress'
-        changed_files: true
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v37
+      - name: WPCS check
+        uses: 10up/wpcs-action@stable
+        with:
+          standard: 'WordPress'
