@@ -28,3 +28,4 @@ jobs:
       uses: 10up/wpcs-action@feature/phpcs-only-changed-files
       with:
         standard: 'WordPress'
+        paths: steps.changed-files.outputs.all_changed_and_modified_files
