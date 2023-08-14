@@ -16,6 +16,7 @@ jobs:
     name: phpcs
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
     - name: Changed files
       uses: dorny/paths-filter@v2
       id: changes
