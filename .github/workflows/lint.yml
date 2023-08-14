@@ -19,6 +19,8 @@ jobs:
     - name: Changed files
       uses: dorny/paths-filter@v2
       id: changes
+      with:
+        filters: ''
     - name: WPCS check
       uses: 10up/wpcs-action@feature/phpcs-only-changed-files
       with:
