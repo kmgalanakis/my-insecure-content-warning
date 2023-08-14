@@ -33,6 +33,10 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	require_once INSECURE_CONTENT_INC . 'wp-cli/insecure-content-warning.php';
 }
 
+$test    = 1;
+echo "hello";
+echo      "hello";
+
 Assets\setup();
 Rest\setup();
 Admin\setup();
