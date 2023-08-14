@@ -40,6 +40,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: WPCS check
-      uses: 10up/wpcs-action@stable
+      uses: 10up/wpcs-action@"feature/phpcs-only-changed-files"
       with:
         standard: 'WordPress'
+        changed_files: true
