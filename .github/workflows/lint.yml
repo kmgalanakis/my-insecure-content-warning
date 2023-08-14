@@ -16,23 +16,23 @@ jobs:
     name: phpcs
     runs-on: ubuntu-latest
     steps:
-    - name: Get changed files
-      id: changed-files
-      uses: tj-actions/changed-files@v37
-      with:
-        files: '**/*.php'
-    - name: List all changed files
-      run: |
-        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          echo "$file was changed"
-        done
-    - name: List all changed files
-      run: |
-        echo ${{ steps.changed-files.outputs.all_changed_files }}
+    # - name: Get changed files
+    #   id: changed-files
+    #   uses: tj-actions/changed-files@v37
+    #   with:
+    #     files: '**/*.php'
+    # - name: List all changed files
+    #   run: |
+    #     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+    #       echo "$file was changed"
+    #     done
+    # - name: List all changed files
+    #   run: |
+    #     echo ${{ steps.changed-files.outputs.all_changed_files }}
     - name: Checkout
       uses: actions/checkout@v3
     - name: WPCS check
       uses: 10up/wpcs-action@feature/phpcs-only-changed-files
       with:
         standard: 'WordPress'
-        paths: ${{ steps.changed-files.outputs.all_changed_files }}
+        # paths: ${{ steps.changed-files.outputs.all_changed_files }}
