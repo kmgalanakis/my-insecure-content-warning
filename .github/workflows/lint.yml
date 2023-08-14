@@ -24,8 +24,10 @@ jobs:
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
           echo "$file was changed"
         done
+    - name: List all changed files
+      run: |
+        echo ${{ steps.changed-files.outputs.all_changed_files }}
     - name: WPCS check
       uses: 10up/wpcs-action@feature/phpcs-only-changed-files
       with:
         standard: 'WordPress'
-        paths: ${{steps.changed-files.outputs.all_changed_and_modified_files}}
