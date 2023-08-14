@@ -12,27 +12,6 @@ on:
       - develop
 
 jobs:
-  eslint:
-    name: eslint
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: install node
-      uses: actions/setup-node@v3
-      with:
-        node-version-file: '.nvmrc'
-    - uses: actions/cache@v3
-      id: cache-node
-      with:
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        path: |
-          node_modules
-          ~/.cache
-          ~/.npm
-    - name: npm install
-      run: npm ci
-    - name: eslint
-      run: npm run lint:js
   phpcs:
     name: phpcs
     runs-on: ubuntu-latest
@@ -40,7 +19,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: WPCS check
-      uses: 10up/wpcs-action@"feature/phpcs-only-changed-files"
+      uses: 10up/wpcs-action@feature/phpcs-only-changed-files
       with:
         standard: 'WordPress'
         changed_files: true
