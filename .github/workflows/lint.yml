@@ -29,6 +29,8 @@ jobs:
     - name: List all changed files
       run: |
         echo ${{ steps.changed-files.outputs.all_changed_files }}
+    - name: Checkout
+      uses: actions/checkout@v3
     - name: WPCS check
       uses: 10up/wpcs-action@feature/phpcs-only-changed-files
       with:
