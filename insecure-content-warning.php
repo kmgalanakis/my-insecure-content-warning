@@ -37,6 +37,8 @@ $test    = 1;
 echo "hello";
 echo      "hello";
 
+echo      "hello123";
+
 Assets\setup();
 Rest\setup();
 Admin\setup();
