@@ -30,7 +30,7 @@ jobs:
         with:
           files: "**.php" # you may customize glob as needed
           phpcs_path: php phpcs.phar
-          standard: phpcs.xml
+          # standard: phpcs.xml
   # phpcs:
   #   name: phpcs
   #   runs-on: ubuntu-latest
