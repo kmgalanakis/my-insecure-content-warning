@@ -35,7 +35,8 @@ jobs:
         fetch-depth: 0
         persist-credentials: true
     - name: WPCS check
-      uses: 10up/wpcs-action@feature/phpcs-only-changed-files
+      # uses: 10up/wpcs-action@feature/phpcs-only-changed-files
+      uses: 10up/wpcs-action@stable
       with:
         standard: 'WordPress'
         # paths: ${{ steps.changed-files.outputs.all_changed_files }}
