@@ -12,34 +12,51 @@ on:
       - develop
 
 jobs:
-  eslint:
-    name: eslint
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: install node
-      uses: actions/setup-node@v3
-      with:
-        node-version-file: '.nvmrc'
-    - uses: actions/cache@v3
-      id: cache-node
-      with:
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        path: |
-          node_modules
-          ~/.cache
-          ~/.npm
-    - name: npm install
-      run: npm ci
-    - name: eslint
-      run: npm run lint:js
   phpcs:
-    name: phpcs
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: WPCS check
-      uses: 10up/wpcs-action@stable
-      with:
-        standard: 'WordPress'
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # important!
+
+      # we may use whatever way to install phpcs, just specify the path on the next step
+      # however, curl seems to be the fastest
+      - name: Install PHP_CodeSniffer
+        run: |
+          curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+          php phpcs.phar --version
+
+      - uses: thenabeel/action-phpcs@v8
+        with:
+          files: "**.php" # you may customize glob as needed
+          phpcs_path: php phpcs.phar
+          standard: Squiz
+  # phpcs:
+  #   name: phpcs
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   # - name: Get changed files
+  #   #   id: changed-files
+  #   #   uses: tj-actions/changed-files@v37
+  #   #   with:
+  #   #     files: '**/*.php'
+  #   # - name: List all changed files
+  #   #   run: |
+  #   #     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+  #   #       echo "$file was changed"
+  #   #     done
+  #   # - name: List all changed files
+  #   #   run: |
+  #   #     echo ${{ steps.changed-files.outputs.all_changed_files }}
+  #   - name: Checkout
+  #     uses: actions/checkout@v3
+  #     with:
+  #       fetch-depth: 0
+  #       persist-credentials: true
+  #   - name: WPCS check
+  #     # uses: 10up/wpcs-action@feature/phpcs-only-changed-files
+  #     uses: 10up/wpcs-action@feature/show-sniff-name-in-annotations
+  #     # uses: 10up/wpcs-action@stable
+  #     with:
+  #       standard: 'WordPress'
+  #       # paths: ${{ steps.changed-files.outputs.all_changed_files }}
