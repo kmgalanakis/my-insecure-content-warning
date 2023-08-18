@@ -7,7 +7,7 @@
 
 namespace ICW\Rest;
 
-$test =       "yeah!";
+$test =         "yeah!";
 
 use ICW\FIX\FixInsecureContent;
 use WP_REST_Request;
